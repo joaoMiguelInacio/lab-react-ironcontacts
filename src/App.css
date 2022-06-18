@@ -3,3 +3,17 @@
   align-items: center;
   flex-direction: column;
 }
+
+.table {
+  width: 100vw;
+}
+
+.table-head {
+  background-color: rgb(8, 115, 197);
+  color: white;
+  line-height: 50px;
+}
+
+.table-body {
+  text-align: center;
+}

@@ -3,10 +3,6 @@ import "./App.css";
 import Contacts from "./contacts.json";
 import ContactItem from "./components/ContactItem";
 
-import Table from '@mui/material/Table';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 
@@ -68,17 +64,17 @@ function App() {
       </ButtonGroup>
       <div className="contacts-list">
         <div className="contact">
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-                <TableCell>Picture</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Popularity</TableCell>
-                <TableCell>Oscar</TableCell>
-                <TableCell>Emmy</TableCell>
-                <TableCell>Delete</TableCell>
-            </TableHead>
+          <table className='table'>
+            <tr className='table-body'>
+                <th className ='table-head'>Picture</th>
+                <th className ='table-head'>Name</th>
+                <th className ='table-head'>Popularity</th>
+                <th className ='table-head'>Oscar</th>
+                <th className ='table-head'>Emmy</th>
+                <th className ='table-head'>Delete</th>
+            </tr>
             {displayContacts()}
-          </Table>
+          </table>
         </div>
       </div>
     </div>
