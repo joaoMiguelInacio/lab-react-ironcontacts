@@ -1,18 +1,23 @@
-export default function ContactItem({ name, pictureUrl, popularity, wonOscar, wonEmmy}) {
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+
+import Button from '@mui/material/Button';
+
+export default function ContactItem({ name, pictureUrl, popularity, wonOscar, wonEmmy, handleDelete}) {
     if(false){
       return (
         <p>Loading...</p>
       )
     } else {
       return (
-        <div className='contact' >
-          <img src={pictureUrl} alt="no-picture" />
-          <p>name: {name}</p>
-          <p>popularity: {popularity}</p>
-          {wonOscar && <p>Oscars awarded 🙌</p>}
-          {wonEmmy && <p>Oscars awarded 🙌</p>}
-          {/* <button onClick={() => handleDelete(id)}>Delete movie 🗑</button> */}
-        </div>
+            <TableBody>
+                <TableCell><img style={{width:100, height:150 }} src={pictureUrl} alt="no-picture" /></TableCell>
+                <TableCell>{name}</TableCell>
+                <TableCell>{popularity}</TableCell>
+                <TableCell>{wonOscar ? <p>🏆</p> : <p>🙈</p> }</TableCell>
+                <TableCell>{wonEmmy ? <p>🏆</p> : <p>🙈</p>}</TableCell>
+                <TableCell><Button onClick={() => handleDelete(name)}>🗑</Button></TableCell>
+            </TableBody>
       )
     } 
   }
