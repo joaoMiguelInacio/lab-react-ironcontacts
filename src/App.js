@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import Contacts from './contacts.json';
+import ContactItem from './components/ContactItem';
+
+console.log(Contacts)
+
+let contacts = [Contacts[0], Contacts[1],Contacts[2],Contacts[3],Contacts[4]];
+
+// let contactsCopy = [...Contacts]
+// let contacts = contactsCopy.splice(0,5)
+
+console.log(contacts)
 
 function App() {
+  const displayContacts = () => {
+    return (
+      contacts.map((contact) => {
+        return (
+          <ContactItem
+            {...contact}
+            //handleDelete={handleDelete}
+          />
+        )
+      })
+    )
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div className='contacts-list'>
+        {
+          displayContacts()
+        }
+      </div>
+  )
 }
 
 export default App;
