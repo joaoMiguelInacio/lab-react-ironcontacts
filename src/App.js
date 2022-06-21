@@ -72,33 +72,43 @@ function App() {
     });
   };
 
-  function handleOscars(name) {
+  const handleOscars = (name) => {
     const contactsCopy = [...contactsPlaceholder];
-    contactsCopy.map((contact) => {
-    if (contact.name === name) {
+    console.log(contactsCopy) // returns wonOscar TRUE before the loop
+    for (const contact of contactsCopy) {
+      if (contact.name === name) {
+        console.log(contact) // returns wonOscar TRUE before the loop
         if (contact.wonOscar === true) {
           contact.wonOscar = false;
+          console.log(contact) // returns wonOscar FALSE as expected
+          break;
         } else {
           contact.wonOscar = true;
-        }
-    }
-    });
-    setContact(contactsCopy);
-  }
-
-  function handleEmmys(name) {
-    const contactsCopy = [...contactsPlaceholder];
-    contactsCopy.map((contact) => {
-      if (contact.name === name) {
-        if (contact.wonEmmy === true) {
-          contact.wonEmmy = false;
-        } else {
-          contact.wonEmmy = true;
+          console.log(contact) // returns wonOscar TRUE as expected 
+          break;
         }
       }
-    });
+    }
+    console.log(contactsCopy); // returns wonOscar TRUE as expected
     setContact(contactsCopy);
-  }
+  };
+
+  const handleEmmys = (name) => {
+    const contactsCopy = [...contactsPlaceholder];
+    console.log(contactsCopy) //returns wonEmmy False as expected
+    const postCeremonyArray = contactsCopy.map((contact) => {
+      if (contact.name === name) {
+        if (contact.wonEmmy === true) {
+          return { ...contact, wonEmmy : false };
+        } else {
+          return { ...contact, wonEmmy : true };
+        }
+      }
+      return contact;
+    });
+    console.log(postCeremonyArray) //returns wonEmmy True as expected
+    setContact(postCeremonyArray);
+  };
 
   return (
     <div>
