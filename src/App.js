@@ -12,6 +12,34 @@ import AddIcon from "@mui/icons-material/Add";
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.info.dark,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
 let contactsData = [
   Contacts[0],
   Contacts[1],
@@ -67,6 +95,8 @@ function App() {
           handleDelete={handleDelete}
           handleOscars={handleOscars}
           handleEmmys={handleEmmys}
+          StyledTableCell={StyledTableCell}
+          StyledTableRow={StyledTableRow}
         />
       );
     });
@@ -87,9 +117,9 @@ function App() {
     const postCeremonyArray = contactsCopy.map((contact) => {
       if (contact.name === name) {
         if (contact.wonEmmy === true) {
-          return { ...contact, wonEmmy : false };
+          return { ...contact, wonEmmy: false };
         } else {
-          return { ...contact, wonEmmy : true };
+          return { ...contact, wonEmmy: true };
         }
       }
       return contact;
@@ -109,44 +139,40 @@ function App() {
         <AddIcon />
         Add Random Contact
       </Fab>
-      <div className="contacts-list">
-        <div className="contact">
-          <table className="table">
-            <thead>
-              <tr className="table-body">
-                <th className="table-head">Picture</th>
-                <th className="table-head">
-                  <Button
-                    fullWidth
-                    endIcon={<ArrowDropDownIcon />}
-                    variant="text"
-                    /*contained, outlined*/ color="inherit"
-                    onClick={() => handleSortByName()}
-                  >
-                    Name
-                  </Button>
-                </th>
-                <th className="table-head">
-                  <Button
-                    fullWidth
-                    endIcon={<ArrowDropDownIcon />}
-                    variant="text"
-                    color="inherit"
-                    /*, success, primary, secondary, info, inherit, error, warning*/ onClick={() =>
-                      handleSortByPopularity()
-                    }
-                  >
-                    Popularity
-                  </Button>
-                </th>
-                <th className="table-head">Oscar</th>
-                <th className="table-head">Emmy</th>
-              </tr>
-            </thead>
-            {displayContacts()}
-          </table>
-        </div>
-      </div>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">PICTURE</StyledTableCell>
+              <StyledTableCell align="center">
+                <Button
+                  fullWidth
+                  endIcon={<ArrowDropDownIcon />}
+                  variant="text"
+                  color="inherit"
+                  onClick={() => handleSortByName()}
+                >
+                  Name
+                </Button>
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <Button
+                  fullWidth
+                  endIcon={<ArrowDropDownIcon />}
+                  variant="text"
+                  color="inherit"
+                  onClick={() => handleSortByPopularity()}
+                >
+                  Popularity
+                </Button>
+              </StyledTableCell>
+              <StyledTableCell align="center">OSCAR</StyledTableCell>
+              <StyledTableCell align="center">EMMY</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          {displayContacts()}
+        </Table>
+      </TableContainer>
     </div>
   );
 }
