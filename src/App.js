@@ -74,28 +74,16 @@ function App() {
 
   const handleOscars = (name) => {
     const contactsCopy = [...contactsPlaceholder];
-    console.log(contactsCopy) // returns wonOscar TRUE before the loop
     for (const contact of contactsCopy) {
       if (contact.name === name) {
-        console.log(contact) // returns wonOscar TRUE before the loop
-        if (contact.wonOscar === true) {
-          contact.wonOscar = false;
-          console.log(contact) // returns wonOscar FALSE as expected
-          break;
-        } else {
-          contact.wonOscar = true;
-          console.log(contact) // returns wonOscar TRUE as expected 
-          break;
-        }
+        contact.wonOscar = !contact.wonOscar;
       }
     }
-    console.log(contactsCopy); // returns wonOscar TRUE as expected
     setContact(contactsCopy);
   };
 
   const handleEmmys = (name) => {
     const contactsCopy = [...contactsPlaceholder];
-    console.log(contactsCopy) //returns wonEmmy False as expected
     const postCeremonyArray = contactsCopy.map((contact) => {
       if (contact.name === name) {
         if (contact.wonEmmy === true) {
@@ -106,7 +94,6 @@ function App() {
       }
       return contact;
     });
-    console.log(postCeremonyArray) //returns wonEmmy True as expected
     setContact(postCeremonyArray);
   };
 

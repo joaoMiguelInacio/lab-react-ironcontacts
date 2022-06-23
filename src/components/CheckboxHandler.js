@@ -8,44 +8,20 @@ export default function CheckboxHandler({ wonOscar, wonEmmy, handleOscars, handl
   return (
     <>
       <td>
-        {wonOscar ? (
-          <p>
-            <Checkbox
-              icon={<EmojiEventsOutlinedIcon fontSize="large" />}
-              checkedIcon={<EmojiEventsIcon fontSize="large" color="warning" />}
-              defaultChecked
-              onChange={() => handleOscars(name)}
-            />
-          </p>
-        ) : (
-          <p>
-            <Checkbox             
-              icon={<EmojiEventsOutlinedIcon fontSize="large" />}
-              checkedIcon={<EmojiEventsIcon fontSize="large" color="warning" />}
-              onChange={() => handleOscars(name)}
-            />
-          </p>
-        )}
+        <Checkbox
+          icon={<EmojiEventsOutlinedIcon fontSize="large" />}
+          checkedIcon={<EmojiEventsIcon fontSize="large" color="warning" />}
+          defaultChecked = {wonOscar? true : false}
+          onChange={() => handleOscars(name)}
+        />
       </td>
       <td>
-        {wonEmmy ? (
-          <p>
-            <Checkbox              
-              icon={<EmojiEventsOutlinedIcon fontSize="large" />}
-              checkedIcon={<EmojiEventsIcon fontSize="large" color="warning" />}
-              defaultChecked
-              onChange={() => handleEmmys(name)}
-            />
-          </p>
-        ) : (
-          <p>
-            <Checkbox
-              icon={<EmojiEventsOutlinedIcon fontSize="large" />}
-              checkedIcon={<EmojiEventsIcon fontSize="large" color="warning" />}
-              onChange={() => handleEmmys(name)}
-            />
-          </p>
-        )}
+        <Checkbox              
+          icon={<EmojiEventsOutlinedIcon fontSize="large" />}
+          checkedIcon={<EmojiEventsIcon fontSize="large" color="warning" />}
+          defaultChecked = {wonEmmy? true : false}
+          onChange={() => handleEmmys(name)}
+        />
       </td>
     </>
   );
